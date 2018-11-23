@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\House;
 use App\Http\Requests\HouseRequest;
+use App\Http\Resources\HouseResource;
 
 class HouseController extends Controller
 {
     public function index()
     {
-    	$houses = House::where('company_id',auth()->user()->company->id)->orderBy('name','asc')->get();
+    	$houses = HouseResource::collection(House::where('company_id',auth()->user()->company->id)->orderBy('name','asc')->get());
     	return response()->json($houses);
     }
 
     public function show(House $house)
     {
-    	return response()->json($house);
+    	return response()->json(new HouseResource($house));
     }
 
     public function store(HouseRequest $request)

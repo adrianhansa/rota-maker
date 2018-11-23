@@ -2,7 +2,7 @@
 	<div class="row justify-content-center mt-3">
         <div class="col-sm-10 col-md-8 col-lg-6">
             <div class="card">
-                <div class="card-header bg-primary">Add House</div>
+                <div class="card-header bg-success text-white">Edit House Details</div>
                 <div class="card-body">
                     <form>
                         <div class="form-group row">

@@ -34,7 +34,7 @@
 								<th>Driver</th>
 								<th>Medi trained</th>
 								<th v-for="day in daysSelected"><small>{{ day.dayOfWeek }}<br>{{ day.date }}</small></th>
-								<th>Hours worked</th>	
+								<th>Hours worked</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,9 +47,9 @@
 								<td><small>{{ employee.medi_trained ? 'yes':'no' }}</small></td>
 								<td v-for="day in daysSelected">
 									<select class="form-control" :class="{'text-success' : (employee.position == 'team leader')}" @change="updateShift(day,employee,$event.target.selectedOptions[0]._value)" required>
-										<option 
+										<option
 											v-for="i in existingShifts"
-											v-if="i.date===day.date && i.employee_id===employee.id" 
+											v-if="i.date===day.date && i.employee_id===employee.id"
 											:value="{id:i.shift_id,name:i.shift_name,duration:i.shift_duration}"
 											selected>{{i.shift_name}}</option>
 										<option v-for="shift in genericShifts" :value="shift">{{ shift.name }}</option>
@@ -122,7 +122,7 @@
 				 	this.daysSelected=response.data.days;
 				 	this.getHoursPerWeekByEmployee(this.existingShifts);
 				 })
-				 .catch((error)=>console.log(error));	 	
+				 .catch((error)=>console.log(error));
 			},
 			updateShift(date,employee,shift){
 				axios.post('/createShift',{date:date,employee:employee,shift:shift})
@@ -139,16 +139,16 @@
 				 	this.existingShifts=response.data;
 				 	this.getHoursPerWeekByEmployee(this.existingShifts);
 				 })
-				 .catch((error)=>console.log(error)); 
+				 .catch((error)=>console.log(error));
 				 return this.hoursPerWeekByEmployee;
 			},
-			getHoursPerWeekByEmployee(existingShifts){	
+			getHoursPerWeekByEmployee(existingShifts){
 					this.employeesByHouse.forEach(employee=>{
 						var hours = 0;
 						existingShifts.forEach(item=>{
 							if(employee.id===item.employee_id){
 								hours += item.shift_duration;
-								this.hoursPerWeekByEmployee[employee.slug] = hours;	
+								this.hoursPerWeekByEmployee[employee.slug] = hours;
 							}
 						})
 					})
@@ -168,7 +168,7 @@
 				return data.length;
 			}
 		},
-		created(){		
+		created(){
 			this.$store.dispatch('getHouse',this.$route.params.house);
 			this.$store.dispatch('getEmployeesByHouse',this.$route.params.house);
 		},

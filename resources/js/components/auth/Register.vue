@@ -1,5 +1,5 @@
 <template>
-	            <div class="card">
+	            <div class="card p-1">
 	                <div class="card-body">
 	                    <form>
 	                        <div class="form-group row">
@@ -18,7 +18,7 @@
 	                                <input id="email" type="user.email" class="form-control" v-model="user.email" required>
 									<ul v-if="errors.email">
                                 		<li v-for="error in errors.email" class="text-danger">{{ error }}</li>
-                                	</ul>	                            
+                                	</ul>
                                 </div>
 	                        </div>
 
@@ -41,7 +41,7 @@
                                 	<li v-for="error in errors.confirmation" class="text-danger">{{ error }}</li>
                             	</ul>
 	                        </div>
-	                        
+
 	                        <div class="form-group row mb-0">
 	                            <div class="col-md-6 offset-md-4">
 	                                <button @click.prevent="register" class="btn btn-primary">Register</button>

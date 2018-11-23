@@ -2,17 +2,56 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::group(['middleware'=>'auth'], function(){
+	// 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	// Route::view('home/{any}', 'home');
+	// Route::view('dashboard/{any}', 'home');
+	Route::get('days/{year}','DayController@days');
+	Route::get('daysSelected/{house}/{start}/{end}','DayController@daysSelected');
+	Route::post('createShift','DayController@createShift');
+	Route::put('updateShift/{shift}','DayController@updateShift');
+	Route::post('existingShifts','DayController@existingShifts');
+	Route::get('getGenericShifts/{house}','DayController@getGenericShifts');
+
+	Route::get('shifts','ShiftController@index');
+	Route::get('shifts/{shift}','ShiftController@show');
+	Route::post('shifts','ShiftController@store');
+	Route::put('shifts/{shift}','ShiftController@update');
+	Route::delete('shifts/{shift}','ShiftController@destroy');
+
+
+
+	Route::get('employees','EmployeeController@index');
+	Route::get('employees/{house}','EmployeeController@employeesByHouse');
+	Route::get('employees/details/{employee}','EmployeeController@show');
+	Route::post('employees/store','EmployeeController@store');
+	Route::put('employees/update/{employee}','EmployeeController@update');
+	Route::post('employees/delete/{employee}','EmployeeController@delete');
+	Route::delete('employees/forcedelete/{employee}','EmployeeController@forceDelete');
+	Route::post('employees/restore/{employee}','EmployeeController@restore');
+
+	Route::get('houses/{house}','HouseController@show');
+	Route::get('company','CompanyController@details');
+
+	Route::group(['middleware'=>'admin'], function(){
+		Route::post('company/store','CompanyController@store');
+		Route::put('company/update/{company}','CompanyController@update');
+		Route::delete('company/delete/{id}','CompanyController@delete');
+
+		Route::get('houses','HouseController@index');
+		Route::post('houses/store','HouseController@store');
+		Route::put('houses/update/{house}','HouseController@update');
+		Route::post('houses/delete/{id}','HouseController@delete');
+		Route::delete('houses/forcedelete/{house}','HouseController@forceDelete');
+		Route::post('houses/restore/{house}','HouseController@restore');
+
+		Route::get('users','UserController@index');
+		Route::get('users/{user}','UserController@show');
+		Route::post('users/store','UserController@store');
+		Route::put('users/update/{user}','UserController@update');
+		Route::delete('users/delete/{user}','UserController@delete');
+
+
+	});
 });

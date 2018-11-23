@@ -4,7 +4,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 
- 
+
 Vue.use(Vuetify)
 
 import {store} from './store/index'
@@ -31,7 +31,6 @@ Vue.component('home', require('./components/Home.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
 Vue.component('app-header', require('./components/Header.vue'));
-
 
 const app = new Vue({
     el: '#app',

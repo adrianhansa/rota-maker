@@ -33,7 +33,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-block" @click.prevent="login">Login</button>
+                                <button type="submit" class="btn btn-primary" @click.prevent="login">Login</button>
                                 <a class="btn btn-link" href="">Forgot Your Password ?</a>
                             </div>
                         </div>
